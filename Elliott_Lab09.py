@@ -3,8 +3,8 @@ import requests
 
 class MyTestCase(unittest.TestCase):
 
-    def test_ddg(self):
-        Presidents = ["George Washington", "John Adams", "Thomas Jefferson", "James Madison",
+    def test_ddg1(self):
+        presidents = ["George Washington", "John Adams", "Thomas Jefferson", "James Madison",
               "James Monroe", "John Quincy Adams", "Andrew Jackson", "Martin Van Buren",
               "William Henry Harrison", "John Tyler", "James K. Polk", "Zachary Taylor",
               "Millard Fillmore", "Franklin Pierce", "James Buchanan", "Abraham Lincoln",
@@ -17,12 +17,12 @@ class MyTestCase(unittest.TestCase):
               "George H. W. Bush", "William J. Clinton", "George W. Bush", "Barrack Obama"
               "Donald Trump", "Joseph R. Biden Jr."]
 
-
-        url_duckduckgo = "https://api.duckduckgo.com"
-        response = requests.get(url_duckduckgo + "/?q=presidents+of+the+united+states&format=json")
+        duckduckgo = "https://api.duckduckgo.com"
+        response = requests.get(duckduckgo + "/?q=presidents+of+the+united+states&format=json")
         rsp_data = response.json()
-        print(rsp_data['RelatedTopics'])
-        #assert "George Washington" in rsp_data["RelatedTopics"]
-        #assert "John Adams" in rsp_data["RelatedTopics"]
+        related = rsp_data['RelatedTopics']
+        q = related[0]
+        w = q['Text']
 
-
+        print(q)
+        assert "Lincoln" in w
